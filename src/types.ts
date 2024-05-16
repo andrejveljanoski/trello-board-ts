@@ -1,8 +1,11 @@
 // document methods return HTMLELement type so we need to check if the element is an input element
 export const isValidTextInput = (
-  inputElement: HTMLElement,
+  inputElement: HTMLElement | null,
 ): inputElement is HTMLInputElement => {
-  return (inputElement as HTMLInputElement).value !== undefined;
+  return (
+    inputElement !== null &&
+    (inputElement as HTMLInputElement).value !== undefined
+  );
 };
 
 export type TaskType = "todo" | "in-progress" | "done";
