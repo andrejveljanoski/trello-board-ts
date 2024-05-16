@@ -46,15 +46,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     column.ondrop = (e) => {
       e.preventDefault();
       column.style.border = "none";
-      const task = JSON.parse(e.dataTransfer?.getData("text/plain") || "{}"); // get task from dataTransfer that is dropped
+      try {
+        const task = JSON.parse(e.dataTransfer?.getData("text/plain") || "{}"); // get task from dataTransfer that is dropped
 
-      if (!isValidTask(task) || !task.id) {
-        throw new Error("Task is invalid");
+        if (!isValidTask(task) || !task.id) {
+          throw new Error("Task is invalid");
+        }
+        const taskRef = doc(db, "tasks", task.id);
+        updateDoc(taskRef, {
+          type, // update task type to the column type
+        });
+      } catch (e) {
+        console.error(e);
       }
-      const taskRef = doc(db, "tasks", task.id);
-      updateDoc(taskRef, {
-        type, // update task type to the column type
-      });
     };
   });
 
