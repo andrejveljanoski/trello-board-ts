@@ -1,13 +1,13 @@
 // document methods return HTMLELement type so we need to check if the element is an input element
 export const isValidTextInput = (
-  inputElement: any,
+  inputElement: HTMLElement,
 ): inputElement is HTMLInputElement => {
-  return inputElement.value !== undefined;
+  return (inputElement as HTMLInputElement).value !== undefined;
 };
 
 export type TaskType = "todo" | "in-progress" | "done";
 
-export const isValidTaskType = (type: any): type is TaskType =>
+export const isValidTaskType = (type: string): type is TaskType =>
   type === "todo" || type === "in-progress" || type === "done";
 
 export type Task = {
@@ -17,10 +17,17 @@ export type Task = {
   type: TaskType;
 };
 
-export const isValidTask = (task: any): task is Task =>
-  task.title !== undefined &&
-  task.description !== undefined &&
-  task.type !== undefined;
+export const isValidTask = (task: unknown): task is Task => {
+  if (typeof task === "object" && task !== null) {
+    const maybeTask = task as Task;
+    return (
+      maybeTask.title !== undefined &&
+      maybeTask.description !== undefined &&
+      isValidTaskType(maybeTask.type)
+    );
+  }
+  return false;
+};
 
 export type TasksState = Task[];
 

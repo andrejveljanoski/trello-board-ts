@@ -17,20 +17,21 @@ export const getTasksAndUpdateState = (renderTasks: () => void) =>
         case "added":
           tasksState.push(task);
           break;
-        case "modified":
+        case "modified": {
           const index = tasksState.findIndex((t) => t.id === task.id);
           if (index !== -1) {
             tasksState[index] = task;
           }
           break;
-        case "removed":
+        }
+        case "removed": {
           const indexToRemove = tasksState.findIndex((t) => t.id === task.id);
           if (indexToRemove !== -1) {
             tasksState.splice(indexToRemove, 1);
           }
           break;
+        }
       }
     });
     renderTasks();
   });
- 
