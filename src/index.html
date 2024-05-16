@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trello</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <div>
+        <h1 id="app-title">Trello Board</h1>
+      </div>
+      <div class="columns-container">
+        <div class="column" id="todo">
+          <h2>To Do</h2>
+          <button id="todo" class="add-task-button">Add a task</button>
+          <div class="task-container"></div>
+        </div>
+        <div class="column" id="in-progress">
+          <h2>In Progress</h2>
+          <button id="in-progress" class="add-task-button">Add a task</button>
+          <div class="task-container"></div>
+        </div>
+        <div class="column" id="done">
+          <h2>Done</h2>
+          <button id="done" class="add-task-button">Add a task</button>
+          <div class="task-container"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Add task Modal -->
+    <div id="add-task-modal" class="modal">
+      <form class="modal-content" id="add-task-modal-content">
+        <span class="close-modal-button" id="close-add-task-modal"
+          >&times;</span
+        >
+        <h2>Add a task</h2>
+        <input type="text" id="task-title" placeholder="Task title" required />
+        <input
+          type="text"
+          id="task-description"
+          placeholder="Task description"
+          required
+        />
+        <button id="add-task" type="submit">Add task</button>
+      </form>
+    </div>
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-login-modal" class="close-modal-button">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+          <label for="login-email">Email:</label><br />
+          <input type="email" id="login-email" name="email" required /><br />
+          <label for="login-password">Password:</label><br />
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            required
+          /><br />
+          <button type="submit">Login</button>
+          <a href="#">
+            <p id="register-link">Don't have an account? Register</p>
+          </a>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+      <div class="modal-content">
+        <span id="close-register-modal" class="close-modal-button"
+          >&times;</span
+        >
+        <h2>Register</h2>
+        <form id="register-form">
+          <label for="register-email">Email:</label><br />
+          <input type="email" id="register-email" name="email" required /><br />
+          <label for="register-password">Password:</label><br />
+          <input
+            type="password"
+            id="register-password"
+            name="password"
+            required
+          /><br />
+          <button type="submit">Register</button>
+          <a href="#">
+            <p id="login-link">Already have an account? Log in</p>
+          </a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
