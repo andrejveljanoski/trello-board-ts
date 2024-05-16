@@ -121,6 +121,8 @@ const renderModal = () => {
       type: modalState.type,
     };
     addTask(task);
+    taskTitleInput.value = "";
+    taskDescriptionInput.value = "";
   };
 };
 
@@ -168,7 +170,7 @@ const createTaskElement = (task: Task) => {
   taskElement.appendChild(deleteButton);
 
   taskElement.addEventListener("dragstart", (e) => {
-    e.dataTransfer?.setData("text/plain", JSON.stringify(task)); 
+    e.dataTransfer?.setData("text/plain", JSON.stringify(task));
     taskElement.style.opacity = "0.25";
   });
 
